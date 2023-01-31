@@ -1,0 +1,41 @@
+.product-advert-dropdown .product-advert-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 12px;
+}
+
+.product-advert-dropdown .product-advert-option img {
+  width: 75px;
+  height: 75px;
+  min-width: 75px;
+  min-height: 75px;
+  object-fit: contain;
+}
+
+.product-advert-dropdown .option-list .option-item-list {
+  max-height: 300px;
+}
+
+.one-line {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.selected-product-advert img {
+  width: 124px;
+  height: 124px;
+  min-width: 124px;
+  min-height: 124px;
+  object-fit: contain;
+}
+
+.react-datepicker-wrapper {
+  width: 240px;
+}
+
+.react-datepicker-wrapper input {
+  width: 100%;
+}

@@ -1,0 +1,539 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@layer components {
+  /* Base */
+body{
+  @apply bg-blue-50;
+}
+h1 {
+  @apply font-semibold text-2xl text-black-400 leading-8;
+}
+h2 {
+  @apply font-medium text-xl text-black-400 leading-8;
+}
+h3 {
+  @apply font-semibold text-lg text-black-400 leading-7;
+}
+h4 {
+  @apply font-medium text-base text-black-400 leading-6;
+}
+h5 {
+  @apply font-medium text-gray-900 text-tiny leading-5;
+}
+h6 {
+  @apply font-medium text-gray-900 text-sm leading-4;
+}
+
+p{
+  @apply text-tiny text-gray-900 leading-5;
+}
+.p-sm{
+  @apply text-sm text-gray-900 leading-5 font-medium;
+}
+.p-sm-gray-400{
+  @apply text-sm text-gray-400 leading-5 font-medium;
+}
+.p-sm-gray-700{
+  @apply text-sm text-gray-700 font-medium leading-5;
+}
+
+/* Layout */
+.content-wrapper{
+  @apply lg:mt-110 lg:ml-88 lg:mr-6 mb-6;
+}
+.portlet-wrapper{
+  @apply p-6 rounded-lg bg-white shadow-sm;
+}
+/* Components */
+.button {
+  @apply focus:outline-none rounded-md font-medium leading-5 text-center ;
+}
+.button-blue-400 {
+  @apply bg-blue-400 text-white hover:bg-blue-600 transition duration-300 ease-in-out;
+}
+.button-blue-100 {
+  @apply bg-blue-100 hover:bg-blue-200 transition duration-300 ease-in-out;
+}
+.button-gray-100 {
+  @apply bg-gray-100 hover:bg-gray-200 transition duration-300 ease-in-out border border-gray-400 text-gray-900;
+}
+.icon-sm {
+  @apply w-4 h-4;
+}
+
+.icon-md {
+  @apply w-5 h-5;
+}
+
+.form-input{
+  @apply py-3 px-3 w-full placeholder-gray-400 border border-gray-300 font-medium rounded-md text-sm outline-none focus:outline-none focus:border-blue-400 focus:shadow-customFormInput transition-all duration-300 ;
+}
+
+.form-input::placeholder{
+  @apply font-normal;
+}
+
+.loading-input-sm{
+  @apply animate-pulse bg-gray-400 rounded-lg h-10 w-full;
+}
+
+.form-input-select{
+  @apply w-full py-3.5;
+}
+
+.placeholder-weight-bold::placeholder {
+  @apply font-semibold;
+}
+
+.label{
+  @apply text-sm font-medium text-gray-700 mb-2;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+.h-screen-modal{
+  height: calc(100vh - 200px);
+}
+
+/* Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+/* Handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 rounded-lg;
+}
+
+/* toggle-button */
+.toggle-checkbox:checked {
+  @apply right-0 border-blue-400;
+}
+.toggle-checkbox:checked + .toggle-label {
+  @apply bg-blue-400;
+  /* background-color: #68D391; */
+}
+.sidebar-links .sidebar-links--chevron {
+  @apply hidden;
+}
+.sidebar-links--active .sidebar-links--chevron{
+  @apply block;
+}
+/* tooltip */
+.tooltip-wrapper .tooltip{
+  @apply hidden absolute flex-wrap w-64 text-center bg-black-400 text-white text-xs rounded py-1 px-4 right-0 ;
+}
+.tooltip-wrapper .tooltip-custom-width{
+  @apply hidden absolute flex-wrap text-center bg-black-400 text-white text-xs rounded py-1 px-4 right-0 ;
+}
+.tooltip-wrapper:hover .tooltip, .tooltip-wrapper:hover .tooltip-custom-width{
+  @apply flex;
+}
+/* ck-editor */
+.ck-content{
+  @apply min-h-25vh;
+}
+
+.ck.ck-content ul,
+   .ck.ck-content ul li {
+      list-style-type: inherit!important;
+   }
+
+   .ck.ck-content ul {
+      /* Default user agent stylesheet, you can change it to your needs. */
+      padding-left:20px!important;
+   }
+
+   .ck.ck-content ol,
+   .ck.ck-content ol li {
+      list-style-type: decimal!important;
+   }
+   .ck.ck-content ol {
+      /* Default user agent stylesheet, you can change it to your needs. */
+      padding-left: 20px!important;
+   }
+
+   .react-datepicker-popper{
+    z-index: 30!important;
+  }
+
+  .tailwind-date-picker-wrapper .react-datepicker-wrapper{
+    width: 100% !important;
+  }
+
+  .tailwind-date-picker-wrapper .react-datepicker__triangle{
+    display: none !important;
+  }
+
+  /*slider detail*/
+  .detail-slider-md img{
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    padding: 0 4px;
+    cursor: pointer;
+  }
+
+  .project-detail-slider .slick-list{
+    overflow:unset!important;
+    z-index: 40!important;
+  }
+
+  .project-detail-slider .detail-slider-md .slick-list{
+    overflow:hidden!important;
+  }
+
+  .project-detail-slider .project-detail-slider-main .slick-list .slick-track{
+    width:100%!important;
+    transform:unset!important;
+  }
+
+  .project-detail-slider .slick-list .slick-slide{
+    /* visibility: hidden; */
+    display:none!important;
+  }
+
+  .project-detail-slider .slick-list .slick-slide.slick-current{
+    /* visibility: visible; */
+    display:block!important;
+  }
+
+  .project-detail-slider > .detail-slider-sm div.slick-slide{
+    width:92px!important;
+    /* visibility: visible; */
+    display:block!important;
+  }
+  .project-detail-slider > .detail-slider-sm .slick-track{
+    display:flex!important;
+    justify-content:center!important;
+  }
+
+  .project-detail-slider > .detail-slider-sm div.slick-slide.slick-current img{
+   @apply opacity-70;
+  }
+
+  .project-detail-slider > .detail-slider-md{
+    z-index: 20!important;
+  }
+
+  .project-detail-slider > .detail-slider-md div.slick-slide{
+    width:150px!important;z-index: 30!important;
+    /* visibility: visible; */
+    display:block!important;
+  }
+  .project-detail-slider > .detail-slider-md .slick-track{
+    display:flex!important;
+    justify-content:center!important;
+  }
+  .project-detail-slider > .detail-slider-md div.slick-slide.slick-current img{
+   @apply opacity-70;
+  }
+
+  .detail-slider-xl img{
+    height: 416px;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .ck-editor-links a {
+    @apply underline text-blue-400 font-medium;
+  }
+
+  .ck-editor-links .image-style-side,
+  .ck-editor-links .image-style-align-left,
+  .ck-editor-links .image-style-align-center,
+  .ck-editor-links .image-style-align-right{
+    max-width: 50%;
+  }
+
+  .ck-editor-links .image-style-side {
+    float: right;
+    margin-left: 1.5em;
+  }
+
+  .ck-editor-links::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .ck-editor-links .image-style-align-left {
+    float: left;
+    margin-right: 1.5em;
+  }
+
+  .ck-editor-links .image-style-align-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ck-editor-links .image-style-align-right {
+    float: right;
+    margin-left: 1.5em;
+  }
+
+  .ck-editor-links .table {
+    margin: 0.9em auto;
+    display: table;
+  }
+
+  .ck-editor-links .table table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px double hsl(0, 0%, 70%);
+  }
+
+  .ck-editor-links .table table td,
+  .ck-editor-links .table table th {
+    min-width: 2em;
+    padding: .4em;
+    border: 1px solid hsl(0, 0%, 75%);
+  }
+
+  .ck-editor-links .table table th {
+    font-weight: bold;
+    background: hsla(0, 0%, 0%, 5%);
+  }
+}
+
+.text-type-8-regular{
+  @apply text-xxs leading-13 ;
+}
+.text-type-8-medium{
+  @apply text-xxs leading-13 font-medium;
+}
+.text-type-8-medium-underline{
+  @apply text-xxs leading-13 font-medium underline;
+}
+.text-type-8-semibold{
+  @apply text-xxs leading-13 font-semibold;
+}
+.text-type-8-bold{
+  @apply text-xxs leading-13 font-bold;
+}
+
+.text-type-10-regular{
+  @apply text-xs leading-4;
+}
+.text-type-10-regular-strikethrough{
+  @apply text-xs leading-4 line-through;
+}
+.text-type-10-medium{
+  @apply text-xs leading-4 font-medium;
+}
+.text-type-10-medium-strikethrough{
+  @apply text-xs leading-4 font-medium line-through;
+}
+.text-type-10-semibold{
+  @apply text-xs leading-4 font-semibold;
+}
+.text-type-10-bold{
+  @apply text-xs leading-4 font-bold;
+}
+
+.text-type-11-regular{
+  @apply text-11 leading-18;
+}
+.text-type-11-medium{
+  @apply text-11 leading-18 font-medium;
+}
+.text-type-11-medium-underline{
+  @apply text-11 leading-18 font-medium underline;
+}
+.text-type-11-semibold{
+  @apply text-11 leading-18 font-semibold;
+}
+.text-type-11-bold{
+  @apply text-11 leading-18 font-bold;
+}
+
+
+.text-type-12-regular{
+  @apply text-sm leading-5;
+}
+.text-type-12-regular-underline{
+  @apply text-sm leading-5 underline;
+}
+.text-type-12-regular-strikethrough{
+  @apply text-sm leading-5 line-through;
+}
+.text-type-12-medium{
+  @apply text-sm leading-5 font-medium;
+}
+.text-type-12-medium-color-700{
+  @apply text-sm leading-5 font-medium text-gray-700;
+}
+.text-type-12-medium-underline{
+  @apply text-sm leading-5 font-medium underline;
+}
+.text-type-12-medium-strikethrough{
+  @apply text-sm leading-5 font-medium line-through;
+}
+.text-type-12-semibold{
+  @apply text-sm leading-5 font-semibold;
+}
+.text-type-12-bold{
+  @apply text-sm leading-5 font-bold;
+}
+
+.text-type-13-regular{
+  @apply text-13 leading-22;
+}
+.text-type-13-medium{
+  @apply text-13 leading-22 font-medium;
+}
+.text-type-13-semibold{
+  @apply text-13 leading-22 font-semibold;
+}
+.text-type-13-bold{
+  @apply text-13 leading-22 font-bold;
+}
+
+.text-type-14-regular{
+  @apply text-tiny leading-23;
+}
+.text-type-14-regular-constant{
+  @apply text-tiny leading-23;
+}
+.text-type-14-regular-strikethrough{
+  @apply text-tiny leading-23 line-through;
+}
+.text-type-14-medium{
+  @apply text-tiny leading-23 font-medium;
+}
+.text-type-14-medium-strikethrough{
+  @apply text-tiny leading-23 font-medium line-through;
+}
+.text-type-14-semibold{
+  @apply text-tiny leading-23 font-semibold;
+}
+.text-type-14-bold{
+  @apply text-tiny leading-23 font-bold;
+}
+
+.text-type-16-regular{
+  @apply text-base leading-26;
+}
+.text-type-16-regular-strikethrough{
+  @apply text-base leading-26 line-through;
+}
+.text-type-16-medium{
+  @apply text-base leading-26 font-medium;
+}
+.text-type-16-semibold{
+  @apply text-base leading-26 font-semibold;
+}
+.text-type-16-bold{
+  @apply text-base leading-26 font-bold;
+}
+
+.text-type-18-regular{
+  @apply text-lg leading-30;
+}
+.text-type-18-medium{
+  @apply text-lg leading-30 font-medium;
+}
+.text-type-18-semibold{
+  @apply text-lg leading-30 font-semibold;
+}
+.text-type-18-bold{
+  @apply text-lg leading-30 font-bold;
+}
+
+.text-type-20-regular{
+  @apply text-xl leading-33;
+}
+.text-type-20-medium{
+  @apply text-xl leading-33 font-medium;
+}
+.text-type-20-semibold{
+  @apply text-xl leading-33 font-semibold;
+}
+.text-type-20-bold{
+  @apply text-xl leading-33 font-bold;
+}
+
+.text-type-24-regular{
+  @apply text-2xl leading-10;
+}
+.text-type-24-medium{
+  @apply text-2xl leading-10  font-medium;
+}
+.text-type-24-semibold{
+  @apply text-2xl leading-10 font-semibold;
+}
+.text-type-24-bold{
+  @apply text-2xl leading-10 font-bold;
+}
+
+
+.floating-label-wrapper{
+  position:relative;
+  border:1px solid #E4E7F1;
+  border-radius:6px;
+}
+
+.floating-label-wrapper-just-left{
+  position:relative;
+  border-left:1px solid #E4E7F1;
+}
+
+.floating-label-wrapper-just-left:focus-within{
+  box-shadow:0px 0px 4px rgba(16, 125, 253, 0.5);
+  border-left:1px solid #107DFD;
+}
+
+.floating-label-wrapper:focus-within{
+  box-shadow:0px 0px 4px rgba(16, 125, 253, 0.5);
+  border:1px solid #107DFD;
+}
+
+.floating-label-wrapper.floating-label-wrapper--invalid{
+  box-shadow:none;
+  border: 1px solid #E31A1A;}
+
+.floating-label-input{
+  width:100%;
+  padding:3px 12px;
+  margin-top:16px;
+  margin-bottom:4px;
+  border:none;
+  outline:none;
+  font-size:13px;
+  color:#1B1F30;
+  font-weight:500;
+  line-height:21px;
+}
+.floating-label-input::placeholder{
+  opacity:0;
+}
+.floating-label{
+  position:absolute;
+  top:0%;
+  left:12px;
+  transform:translateY(14px);
+  font-size:13px;
+  transition-duration:300ms;
+  color:#A3AED0;
+  line-height:21px;
+}
+
+
+.floating-label-wrapper:focus-within > .floating-label,
+.floating-label-input:not(:placeholder-shown) + .floating-label{
+  color:#585D76;
+  transform:translateY(6px);
+  font-size:8px;
+  font-weight:500;
+  line-height:13px;
+}
+
+

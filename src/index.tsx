@@ -1,0 +1,494 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import SimpleReactLightbox from 'simple-react-lightbox'
+
+import './bundle.css';
+
+import secureStorage from './Services/SecureStorage';
+import { ProtectedRoute } from './Services/ProtectedRoute';
+import { SharedContextProvider } from './Services/SharedContext';
+import { Header } from './Components/Header';
+import { Menu } from './Components/Menu';
+import { ModalDialogs } from './Components/ModalDialogs';
+import { Dashboard } from './Views/Dashboard';
+import { AdminUsers } from './Views/AdminUsers';
+import { Login } from './Views/Login';
+import { Districted } from './Views/Districted';
+import { ProCategoryList } from './Views/ProCategoryList';
+import { AdminUserDetail } from './Views/AdminUserDetail';
+import { AdminUserAdd } from './Views/AdminUserAdd';
+import { ProCategoryDetail } from './Views/ProCategoryDetail';
+import { ProCategoryAdd } from './Views/ProCategoryAdd';
+import { ProServiceRequests } from './Views/ProServiceRequests';
+import { IdeaCategoryFeatureList } from './Views/IdeaCategoryFeatureList';
+import { IdeaCategoryList } from './Views/IdeaCategoryList';
+import { IdeaCategoryAdd } from './Views/IdeaCategoryAdd';
+import { IdeaCategoryDetail } from './Views/IdeaCategoryDetail';
+import { SellerCategoryList } from './Views/SellerCategoryList';
+import { SellerCategoryAdd } from './Views/SellerCategoryAdd';
+import { SellerCategoryDetail } from './Views/SellerCategoryDetail';
+import { SellerCategoryVariation } from './Views/SellerCategoryVariation';
+import { SellerCategoryFeature } from './Views/SellerCategoryFeature';
+import { SellerCategoryGroupList } from './Views/SellerCategoryGroupList';
+import { SellerCategoryGroupAdd } from './Views/SellerCategoryGroupAdd';
+import { SellerCategoryGroupDetail } from './Views/SellerCategoryGroupDetail';
+import { SellerCategoryRequestList } from './Views/SellerCategoryRequestList';
+import { SellerApplicationList } from './Views/SellerApplicationList';
+import { SellerApprovedList } from './Views/SellerApprovedList';
+import { SellerRefusedList } from './Views/SellerRefusedList';
+import { SellerCertificateList } from './Views/SellerCertificateList';
+import { SellerDetail } from './Views/SellerDetail';
+import { SellerEdit } from './Views/SellerEdit';
+import { ProBadgeAdd } from './Views/ProBadgeAdd';
+import { ProBadgeList } from './Views/ProBadgeList';
+import { ProBadgeDetail } from './Views/ProBadgeDetail';
+import { ProBadgeAssign } from './Views/ProBadgeAssign';
+import { ProRefusedMemberApplicationList } from './Views/ProRefusedMemberApplicationList';
+import { ProMemberApplicationList } from './Views/ProMemberApplicationList';
+import { ProProfessionalList } from './Views/ProProfessionalList';
+import { ProDocumentList } from './Views/ProDocumentList';
+import { ProProfessionalMemberList } from './Views/ProProfessionalMemberList';
+import { ProProfessionalDetail } from './Views/ProProfessionalDetail';
+import { ProProfessionalEdit } from './Views/ProProfessionalEdit';
+import { ProSliderList } from './Views/ProSliderList';
+import { BlogAuthorList } from './Views/BlogAuthorList';
+import { BlogCategoryAdd } from './Views/BlogCategoryAdd';
+import { BlogCategoryEdit } from './Views/BlogCategoryEdit';
+import { BlogCategoryList } from './Views/BlogCategoryList';
+import { BlogAdd } from './Views/BlogAdd';
+import { BlogEdit } from './Views/BlogEdit';
+import { BlogList } from './Views/BlogList';
+import { AcademyCategoryList } from './Views/AcademyCategoryList';
+import { AcademyCategoryAdd } from './Views/AcademyCategoryAdd';
+import { AcademyCategoryEdit } from './Views/AcademyCategoryEdit';
+import { AcademyList } from './Views/AcademyList';
+import { AcademyAdd } from './Views/AcademyAdd';
+import { AcademyEdit } from './Views/AcademyEdit';
+import { AcademyDetail } from './Views/AcademyDetail';
+import { AcademyQuestionList } from './Views/AcademyQuestionList';
+import { HelpGroupAdd } from './Views/HelpGroupAdd';
+import { HelpGroupList } from './Views/HelpGroupList';
+import { HelpGroupDetail } from './Views/HelpGroupDetail';
+import { HelpCategoryAdd } from './Views/HelpCategoryAdd';
+import { HelpCategoryList } from './Views/HelpCategoryList';
+import { HelpCategoryDetail } from './Views/HelpCategoryDetail';
+import { HelpContentAdd } from './Views/HelpContentAdd';
+import { HelpContentList } from './Views/HelpContentList';
+import { HelpContentDetail } from './Views/HelpContentDetail';
+import { BrandList } from './Views/BrandList';
+import { MemberSocieties } from './Views/MemberSocieties';
+import { SiteRefundCategoryList } from './Views/SiteRefundCategoryList';
+import { SiteRefundOptionList } from './Views/SiteRefundOptionList';
+import { SellerCampaignList } from './Views/SellerCampaignList';
+import { SellerCampaignDetail } from './Views/SellerCampaignDetail';
+import { ManagementCampaignList } from './Views/ManagementCampaign/ManagementCampaignList';
+import { ManagementCampaignAdd } from './Views/ManagementCampaign/ManagemenetCampaignAdd';
+import { ManagementCampaignDetail } from './Views/ManagementCampaign/ManagementCampaignDetail';
+import { ManagementCampaignUpdate } from './Views/ManagementCampaign/ManagementCampaignUpdate';
+import { ProductAdvertDraftList } from './Views/ProductAdvertDraftList';
+import { ProductAdvertDraftDetail } from './Views/ProductAdvertDraftDetail/ProductAdvertDraftDetail';
+import { ProductAdvertList } from './Views/ProductAdvertList';
+import { ProductAdvertDetail } from './Views/ProductAdvertDetail/ProductAdvertDetail';
+import { ProductAdvertEdit } from './Views/ProductAdvertEdit';
+import { ProductAdvertRejectedList } from './Views/ProductAdvertRejectedList';
+import { ReportedProductList } from './Views/ReportedProductList';
+import { ProductCatalogList } from './Views/ProductCatalogList';
+import { ProductCatalogDetail } from './Views/ProductCatalogDetail/ProductCatalogDetail';
+import { ProductEdit } from './Views/ProductEdit';
+import { ProductCatalogUpdateList } from './Views/ProductCatalogUpdateList';
+import { ProductCatalogUpdateDetail } from './Views/ProductCatalogUpdateDetail';
+import { ProductEvaluationList } from './Views/ProductEvaluationList';
+import { ProductQuestionList } from './Views/ProductQuestionList';
+import { ProductSimilarList } from './Views/ProductSimilarList';
+import { ProRequests } from './Views/ProRequests';
+import { ProRequestDetail } from './Views/ProRequestDetail';
+import { ProjectApplicationList } from './Views/ProjectApplicationList';
+import { ProjectApprovedList } from './Views/ProjectApprovedList';
+import { ProjectRejectedList } from './Views/ProjectRejectedList';
+import { ProjectDetail } from './Views/ProjectDetail';
+import { ProjectEdit } from './Views/ProjectEdit';
+import { ProjectProductAdd } from './Views/ProjectProductAdd';
+import { IdeaList } from './Views/IdeaList';
+import { SupportWebRequestList } from './Views/SupportWebRequestList';
+import { SupportProRequestList } from './Views/SupportProRequestList';
+import { SupportSellerRequestList } from './Views/SupportSellerRequestList';
+import { SupportWebSubjectList } from './Views/SupportWebSubjectList';
+import { SupportProSubjectList } from './Views/SupportProSubjectList';
+import { SupportSellerSubjectList } from './Views/SupportSellerSubjectList';
+import { HousiyCampaignCreate } from './Views/HousiyCampaignCreate';
+import { HousiyCampaignList } from './Views/HousiyCampaignList';
+import { HousiyCampaignDetail } from './Views/HousiyCampaignDetail';
+import { GeneralMainContent } from './Views/GeneralMainContent';
+import { GeneralSliderEdit } from './Views/GeneralSliderEdit';
+import { GeneralPromotionEdit } from './Views/GeneralPromotionEdit';
+import { GeneralCommentEdit } from './Views/GeneralCommentEdit';
+import { GeneralAboutContent } from './Views/GeneralAboutContent';
+import { GeneralAboutContentEdit } from './Views/GeneralAboutContentEdit';
+import { GeneralProContent } from './Views/GeneralProContent';
+import { GeneralProContentEdit } from './Views/GeneralProContentEdit';
+import { GeneralSellerContent } from './Views/GeneralSellerContent';
+import { GeneralSellerContentEdit } from './Views/GeneralSellerContentEdit';
+import { GeneralMembershipContent } from './Views/GeneralMembershipContent';
+import { GeneralMembershipEdit } from './Views/GeneralMembershipEdit';
+import { OrderLateList } from './Views/OrderLateList';
+import { OrderList } from './Views/OrderList';
+import { OrderListDetail } from './Views/OrderListDetail';
+import { CanceledOrderList } from './Views/CanceledOrderList';
+import { IdeaProjectQuestionList } from './Views/IdeaProjectQuestionList';
+import { AddNewList } from './Views/DynamicLists/AddNewList'
+import { CreatedLists } from './Views/DynamicLists/CreatedLists';
+import { UpdateList } from './Views/DynamicLists/UpdateList';
+import { ListDetail } from './Views/DynamicLists/ListDetail';
+import { OrderRefundRequestList } from './Views/OrderRefundRequestList';
+import { ProWorkOngoingList } from './Views/ProWorkOngoingList';
+import { ProWorkCompletedList } from './Views/ProWorkCompletedList';
+import { ProWorkCanceledList } from './Views/ProWorkCanceledList';
+import { ProWorkCancelRequestList } from './Views/ProWorkCancelRequestList';
+import { ProWorkInstallmentList } from './Views/ProWorkInstallmentList';
+import { ProWorkPaymentDetail } from './Views/ProWorkPaymentDetail';
+import { ProWorkCompletedPaymentList } from './Views/ProWorkCompletedPaymentList';
+import { ProWorkReportList } from './Views/ProWorkReportList';
+import { ProWorkDetailMain } from './Views/ProWorkDetail/ProWorkDetailMain';
+import { DiscountCouponList } from './Views/DiscountCouponList';
+import { DiscountCouponEdit } from './Views/DiscountCouponEdit';
+import { AgreementList } from './Views/AgreementList';
+import { AgreementEdit } from './Views/AgreementEdit';
+import { FaqList } from './Views/FaqList';
+import { FaqEdit } from './Views/FaqEdit';
+import { SocialMediaList } from './Views/SocialMediaList';
+import { CargoPricesCustomer } from './Views/CargoPrices/CargoPricesCustomer';
+import { CargoPricesStore } from './Views/CargoPrices/CargoPricesStore';
+import { ShoppingCartList } from './Views/ShoppingCartList';
+import { ShoppingCartDetail } from './Views/ShoppingCartDetail';
+import { RejectReasonCountList } from './Views/RejectReasonCountList';
+import { RejectReasonList } from './Views/RejectReasonList';
+import { BrandRequestList } from './Views/BrandRequestList';
+import { MultiProductTransactions } from './Views/MultiProductTransactions';
+import { ListSponsorPrices } from './Views/ListSponsorPrices';
+import { SponsoredProducts } from './Views/SponsoredProducts';
+import { SponsoredProfessionals } from './Views/SponsoredProfessionals';
+import { AdSponsorPrices } from './Views/AdSponsorPrices';
+import { CompletedSellerPaymentList } from './Views/Finance/CompletedSellerPaymentList';
+import { SellerWaitingInvoicePaymentActionList } from './Views/Finance/SellerWaitingInvoicePaymentActionList';
+import { CreateNewSellerInvoice } from './Views/Finance/CreateNewSellerInvoice';
+import { SellerInvoicedPaymentActionList } from './Views/Finance/SellerInvoicedPaymentActionList';
+import { SellerReceiptList } from './Views/Finance/SellerReceiptList';
+import { SellerReceiptPaymentRecordList } from './Views/Finance/SellerReceiptPaymentRecordList';
+import { SellerAllReceiptList } from './Views/Finance/SellerAllReceiptList';
+import { ReceiptDetailForSeller } from './Views/Finance/ReceiptDetailForSeller';
+import { SellerPaidReceiptList } from './Views/Finance/SellerPaidReceiptList';
+import { ProWaitingPaymentsList } from './Views/Finance/ProWaitingPaymentsList';
+import { ProDelayedPaymentsList } from './Views/Finance/ProDelayedPaymentsList';
+import { ProCompletedPaymentsList } from './Views/Finance/ProCompletedPaymentsList';
+import { ProSubscriptionPaymentsList } from './Views/Finance/ProSubscriptionPaymentsList';
+import { ProWaitingInvoicePaymentActionList } from './Views/Finance/ProWaitingInvoicePaymentActionList';
+import { CreateNewProInvoice } from './Views/Finance/CreateNewProInvoice';
+import { ProInvoicedPaymentActionList } from './Views/Finance/ProInvoicedPaymentActionList';
+import { ProReceiptList } from './Views/Finance/ProReceiptList';
+import { ProReceiptPaymentRecordList } from './Views/Finance/ProReceiptPaymentRecordList';
+import { ProPaidReceiptList } from './Views/Finance/ProPaidReceiptList';
+import { ProAllReceiptList } from './Views/Finance/ProAllReceiptList';
+import { ReceiptDetailForPro } from './Views/Finance/ReceiptDetailForPro';
+import { ProAdvertisementPayments } from './Views/Finance/ProAdvertisementPayments';
+import { SellerAdvertisementPayments } from './Views/Finance/SellerAdvertisementPayments';
+import { SiteUserList } from './Views/SiteUserList';
+import { SiteUserDetailMain } from './Views/SiteUserDetail/SiteUserDetailMain';
+import { ProProfessionalReportList } from './Views/ProProfessionalReportList';
+import { SeoGeneral } from './Views/SeoGeneral';
+import { SeoSeller } from './Views/SeoSeller';
+import { SeoProduct } from './Views/SeoProduct';
+import { SeoProductCategory } from './Views/SeoProductCategory';
+import { SeoProfessional } from './Views/SeoProfessional';
+import { SeoProfessionalCategory } from './Views/SeoProfessionalCategory';
+import { SeoIdea } from './Views/SeoIdea';
+import { SeoIdeaCategory } from './Views/SeoIdeaCategory';
+import { XmlManagement } from './Views/XmlManagement';
+import { AnnouncementList } from './Views/AnnouncementList';
+import { AnnouncementEdit } from './Views/AnnouncementEdit';
+import { SellerRejecReasonList } from './Views/SellerRejectReasonList';
+import { SellerRejectReasonOptionList } from './Views/SellerRejectReasonOptionList';
+import { SellerCategoryListForVariations } from './Views/SellerCategoryListForVariatons';
+import { SellerSubCategoryList } from './Views/SellerSubCategoryList';
+import { SellerCategoryListForFeature } from './Views/SellerCategoryListForFeature';
+import { LinkedCategoryList } from './Views/LinkedCategoryList';
+import { LinkedCategoryAdd } from './Views/LinkedCategoryAdd';
+import { SellerCategoryTree } from './Views/SellerCategoryTree';
+import { SiteServicesInterruptions } from './Views/SiteServicesInterruptions';
+import { SeoProductGroup } from './Views/SeoProductGroup';
+import { SellerUnPaidReceiptList } from './Views/Finance/SellerUnPaidReceiptList';
+import { BannerUpsert } from "./Views/BannerViews/BannerUpsert";
+import { BannerList } from "./Views/BannerViews/BannerList";
+import { HomeSliderList } from './Views/SliderManagmentViews/HomeSliderList';
+import { HomeSliderListOld } from "./Views/SliderManagmentViews/HomeSliderListOld";
+import { ProPanelSliderList } from './Views/SliderManagmentViews/ProPanelSliderList';
+import { SellerPanelSliderList } from './Views/SliderManagmentViews/SellerPanelSliderList';
+import { SliderAdd } from './Views/SliderManagmentViews/SliderAdd';
+import { SliderDetail } from './Views/SliderManagmentViews/SliderDetail';
+import { SellerCommissionList } from "./Views/SellerCommissionViews/SellerCommissionList";
+import { SellerCommissionUpsert } from "./Views/SellerCommissionViews/SellerCommissionUpsert";
+import { GroupParticipantSettingsList } from "./Views/GroupBuyViews/GroupParticipantSettings/GroupParticipantSettingsList";
+import { GroupLiveTimeSettingsList } from "./Views/GroupBuyViews/GroupLiveTimeSettings/GroupLiveTimeSettingsList";
+import { GroupBuyList } from "./Views/GroupBuyViews/GroupBuy/GroupBuyList";
+import {
+  GroupParticipantSettingsUpsert
+} from "./Views/GroupBuyViews/GroupParticipantSettings/GroupParticipantSettingsUpsert";
+import { GroupLiveTimeSettingsUpsert } from "./Views/GroupBuyViews/GroupLiveTimeSettings/GroupLiveTimeSettingsUpsert";
+import { GroupBuyUpsert } from "./Views/GroupBuyViews/GroupBuy/GroupBuyUpsert";
+import { GroupBuyDetail } from "./Views/GroupBuyViews/GroupBuy/GroupBuyDetail";
+
+
+const isLogin = secureStorage.getItem("AccessToken");
+
+ReactDOM.render(
+  <React.StrictMode>
+    <SimpleReactLightbox>
+      <SharedContextProvider>
+        <BrowserRouter>
+          {/*{*/}
+          {/*  (!isLogin && window.location.pathname !== "/giris-yap" && <Redirect to={"/giris-yap"} />) ||*/}
+          {/*  (isLogin && window.location.pathname === "/giris-yap" && <Redirect to={"/"} />)*/}
+          {/*}*/}
+          <ModalDialogs />
+          <Switch>
+            <Route exact path="/giris-yap" component={Login} />
+            <>
+              <Menu />
+              <Header />
+              <ProtectedRoute exact path="/" component={Dashboard} permissionPath="Home" />
+              <ProtectedRoute exact path="/admin-kullanicilari" component={AdminUsers} permissionPath="AdminUsers" />
+              <ProtectedRoute exact path="/admin-kullanicisi/:id?" component={AdminUserDetail} permissionPath="AdminUsers" />
+              <ProtectedRoute exact path="/admin-kullanici-ekle" component={AdminUserAdd} permissionPath="AdminUsers" />
+              <ProtectedRoute exact path="/pro-kategori-listesi" component={ProCategoryList} permissionPath="ProCategoryManagement" />
+              <ProtectedRoute exact path="/pro-kategori-detay/:id?" component={ProCategoryDetail} permissionPath="ProCategoryManagement" />
+              <ProtectedRoute exact path="/pro-kategori-ekle" component={ProCategoryAdd} permissionPath="ProCategoryManagement" />
+              <ProtectedRoute exact path="/pro-hizmet-talepleri" component={ProServiceRequests} permissionPath="ProCategoryManagement" />
+              <ProtectedRoute exact path="/pro-rozet-ekle" component={ProBadgeAdd} permissionPath="ProBadges" />
+              <ProtectedRoute exact path="/pro-rozet-listesi" component={ProBadgeList} permissionPath="ProBadges" />
+              <ProtectedRoute exact path="/pro-rozet-detay/:id?" component={ProBadgeDetail} permissionPath="ProBadges" />
+              <ProtectedRoute exact path="/pro-rozet-ata" component={ProBadgeAssign} permissionPath="ProBadges" />
+              <ProtectedRoute exact path="/pro-reddedilen-uye-basvuru-listesi" component={ProRefusedMemberApplicationList} permissionPath="ProMembershipMembership" />
+              <ProtectedRoute exact path="/pro-uye-basvuru-listesi" component={ProMemberApplicationList} permissionPath="ProMembershipMembership" />
+              <ProtectedRoute exact path="/pro-profesyonel-listesi" component={ProProfessionalList} permissionPath="ProMembershipMembership" />
+              <ProtectedRoute exact path="/pro-profesyonel-belgeleri-listesi" component={ProDocumentList} permissionPath="ProMembershipMembership" />
+              <ProtectedRoute exact path="/pro-profesyonel-detay/:id?" component={ProProfessionalDetail} permissionPath="ProMembershipMembership" />
+              <ProtectedRoute exact path="/pro-profesyonel-duzenle/:id?" component={ProProfessionalEdit} permissionPath="ProMembershipMembership" />
+              <ProtectedRoute exact path="/pro-profesyonel-uye-listesi" component={ProProfessionalMemberList} permissionPath="ProMembershipMembership" />
+              <ProtectedRoute exact path="/fikir-kategori-ozellikleri" component={IdeaCategoryFeatureList} permissionPath="IdeaCategoryManagement" />
+              <ProtectedRoute exact path="/fikir-kategori-listesi" component={IdeaCategoryList} permissionPath="IdeaCategoryManagement" />
+              <ProtectedRoute exact path="/fikir-kategori-ekle" component={IdeaCategoryAdd} permissionPath="IdeaCategoryManagement" />
+              <ProtectedRoute exact path="/fikir-kategori-detay/:id?" component={IdeaCategoryDetail} permissionPath="IdeaCategoryManagement" />
+              <ProtectedRoute exact path="/satici-kategori-listesi" component={SellerCategoryList} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/satici-kategori-bilgileri-ekle" component={SellerCategoryAdd} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/satici-kategori-bilgileri-detay/:id?" component={SellerCategoryDetail} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/satici-kategori-varyasyonlari" component={SellerCategoryVariation} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/satici-kategori-ozellikleri" component={SellerCategoryFeature} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/satici-kategori-grup-listesi" component={SellerCategoryGroupList} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/satici-kategori-grup-ekle" component={SellerCategoryGroupAdd} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/satici-kategori-grup-detay/:id?" component={SellerCategoryGroupDetail} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/satici-kategori-talepleri" component={SellerCategoryRequestList} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/onayli-satici-listesi" component={SellerApprovedList} permissionPath="SellerListManagement" />
+              <ProtectedRoute exact path="/reddedilen-satici-listesi" component={SellerRefusedList} permissionPath="SellerListManagement" />
+              <ProtectedRoute exact path="/satici-belgeleri" component={SellerCertificateList} permissionPath="SellerListManagement" />
+              <ProtectedRoute exact path="/satici-basvuru-listesi" component={SellerApplicationList} permissionPath="SellerListManagement" />
+              <ProtectedRoute exact path="/satici-detay/:id?" component={SellerDetail} permissionPath="SellerListManagement" />
+              <ProtectedRoute exact path="/satici-duzenle/:id?" component={SellerEdit} permissionPath="SellerListManagement" />
+              <ProtectedRoute exact path="/anasayfa-slider-listesi" component={HomeSliderList} permissionPath="SliderManagement" />
+              <ProtectedRoute exact path="/anasayfa-slider-listesi-eski" component={HomeSliderListOld} permissionPath="SliderManagement" /> {/*todo*/}
+              <ProtectedRoute exact path="/profesyonel-slider-listesi" component={ProSliderList} permissionPath="SliderManagement" /> {/*todo*/}
+              <ProtectedRoute exact path="/pro-panel-slider-listesi" component={ProPanelSliderList} permissionPath="SliderManagement" />
+              <ProtectedRoute exact path="/seller-panel-slider-listesi" component={SellerPanelSliderList} permissionPath="SliderManagement" />
+              <ProtectedRoute exact path="/slider-ekle/:type?" component={SliderAdd} permissionPath="SliderManagement" />
+              <ProtectedRoute exact path="/slider-detay/:id?" component={SliderDetail} permissionPath="SliderManagement" />
+              <ProtectedRoute exact path="/blog-yazar-listesi" component={BlogAuthorList} permissionPath="BlogManagement" />
+              <ProtectedRoute exact path="/blog-kategori-ekle" component={BlogCategoryAdd} permissionPath="BlogManagement" />
+              <ProtectedRoute exact path="/blog-kategori-duzenle/:id?" component={BlogCategoryEdit} permissionPath="BlogManagement" />
+              <ProtectedRoute exact path="/blog-kategori-listesi" component={BlogCategoryList} permissionPath="BlogManagement" />
+              <ProtectedRoute exact path="/blog-ekle" component={BlogAdd} permissionPath="BlogManagement" />
+              <ProtectedRoute exact path="/blog-duzenle/:id?" component={BlogEdit} permissionPath="BlogManagement" />
+              <ProtectedRoute exact path="/blog-listesi" component={BlogList} permissionPath="BlogManagement" />
+              <ProtectedRoute exact path="/akademi-kategori-ekle" component={AcademyCategoryAdd} permissionPath="AcademyManagement" />
+              <ProtectedRoute exact path="/akademi-kategori-duzenle/:id?" component={AcademyCategoryEdit} permissionPath="AcademyManagement" />
+              <ProtectedRoute exact path="/akademi-kategori-listesi" component={AcademyCategoryList} permissionPath="AcademyManagement" />
+              <ProtectedRoute exact path="/akademi-ekle" component={AcademyAdd} permissionPath="AcademyManagement" />
+              <ProtectedRoute exact path="/akademi-duzenle/:id?" component={AcademyEdit} permissionPath="AcademyManagement" />
+              <ProtectedRoute exact path="/akademi-detay/:id?" component={AcademyDetail} permissionPath="AcademyManagement" />
+              <ProtectedRoute exact path="/akademi-listesi" component={AcademyList} permissionPath="AcademyManagement" />
+              <ProtectedRoute exact path="/akademi-soru-listesi" component={AcademyQuestionList} permissionPath="AcademyManagement" />
+              <ProtectedRoute exact path="/yardim-grubu-olustur" component={HelpGroupAdd} permissionPath="HelpManagement" />
+              <ProtectedRoute exact path="/yardim-grup-listesi" component={HelpGroupList} permissionPath="HelpManagement" />
+              <ProtectedRoute exact path="/yardim-grubu-detay/:id?" component={HelpGroupDetail} permissionPath="HelpManagement" />
+              <ProtectedRoute exact path="/yardim-kategori-olustur" component={HelpCategoryAdd} permissionPath="HelpManagement" />
+              <ProtectedRoute exact path="/yardim-kategori-listesi" component={HelpCategoryList} permissionPath="HelpManagement" />
+              <ProtectedRoute exact path="/yardim-kategori-detay/:id?" component={HelpCategoryDetail} permissionPath="HelpManagement" />
+              <ProtectedRoute exact path="/yardim-icerigi-olustur" component={HelpContentAdd} permissionPath="HelpManagement" />
+              <ProtectedRoute exact path="/yardim-icerik-listesi" component={HelpContentList} permissionPath="HelpManagement" />
+              <ProtectedRoute exact path="/yardim-icerik-detay/:id?" component={HelpContentDetail} permissionPath="HelpManagement" />
+              <ProtectedRoute exact path="/marka-listesi" component={BrandList} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/marka-talep-listesi" component={BrandRequestList} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/uye-dernekleri" component={MemberSocieties} permissionPath="ProMembershipMembership" />
+              <ProtectedRoute exact path="/iptal-iade-yonetimi" component={SiteRefundCategoryList} permissionPath="CancelRefundManagement" />
+              <ProtectedRoute exact path="/iptal-iade-secenekleri/:id?" component={SiteRefundOptionList} permissionPath="CancelRefundManagement" />
+              <ProtectedRoute exact path="/satici-kampanya-listesi" component={SellerCampaignList} permissionPath="SellerCampaigns" />
+              <ProtectedRoute exact path="/satici-kampanya-detay/:id?" component={SellerCampaignDetail} permissionPath="SellerCampaigns" />
+              <ProtectedRoute exact path="/yonetim-kampanyalari" component={ManagementCampaignList} permissionPath="SellerCampaigns" />
+              <ProtectedRoute exact path="/yonetim-kampanyasi-olustur" component={ManagementCampaignAdd} permissionPath="SellerCampaigns" />
+              <ProtectedRoute exact path="/yonetim-kampanyasi-olustur/:id" component={ManagementCampaignAdd} permissionPath="SellerCampaigns" />
+              <ProtectedRoute exact path="/yonetim-kampanyasi-detay/:id?" component={ManagementCampaignDetail} permissionPath="SellerCampaigns" />
+              <ProtectedRoute exact path="/yonetim-kampanyasi-duzenle/:id?" component={ManagementCampaignUpdate} permissionPath="SellerCampaigns" />
+              <ProtectedRoute exact path="/onay-bekleyen-ilanlar" component={ProductAdvertDraftList} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/onay-bekleyen-ilan-detay/:id?" component={ProductAdvertDraftDetail} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/urun-ilan-listesi" component={ProductAdvertList} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/urun-ilan-detay/:id?" component={ProductAdvertDetail} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/urun-ilan-duzenle/:id?" component={ProductAdvertEdit} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/reddedilen-ilanlar" component={ProductAdvertRejectedList} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/urun-katalogu" component={ProductCatalogList} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/urun-detay/:id?" component={ProductCatalogDetail} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/urun-duzenle/:id?" component={ProductEdit} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/urun-katalogu-guncelleme-listesi" component={ProductCatalogUpdateList} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/urun-katalogu-guncelleme-detay/:id?" component={ProductCatalogUpdateDetail} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/urun-degerlendirmeleri" component={ProductEvaluationList} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/urun-soru-cevap" component={ProductQuestionList} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/benzer-urun-listesi" component={ProductSimilarList} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/bildirilen-urunler" component={ReportedProductList} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/pro-talepler" component={ProRequests} permissionPath="ProServices" />
+              <ProtectedRoute exact path="/pro-talep-detay/:id?" component={ProRequestDetail} permissionPath="ProServices" />
+              <ProtectedRoute exact path="/pro-sorun-bildirimleri" component={ProProfessionalReportList} permissionPath="ProMembershipMembership" />
+              <ProtectedRoute exact path="/onay-bekleyen-projeler" component={ProjectApplicationList} permissionPath="ProjectsManagement" />
+              <ProtectedRoute exact path="/onaylanan-projeler" component={ProjectApprovedList} permissionPath="ProjectsManagement" />
+              <ProtectedRoute exact path="/reddedilen-projeler" component={ProjectRejectedList} permissionPath="ProjectsManagement" />
+              <ProtectedRoute exact path="/proje-detay/:id?" component={ProjectDetail} permissionPath="ProjectsManagement" />
+              <ProtectedRoute exact path="/proje-duzenle/:id?" component={ProjectEdit} permissionPath="ProjectsManagement" />
+              <ProtectedRoute exact path="/proje-urun-ekle/:id?" component={ProjectProductAdd} permissionPath="ProjectsManagement" />
+              <ProtectedRoute exact path="/fikir-listesi" component={IdeaList} permissionPath="IdeaList" />
+              <ProtectedRoute exact path="/web-destek-talepleri" component={SupportWebRequestList} permissionPath="HelpRequest" />
+              <ProtectedRoute exact path="/profesyonel-destek-talepleri" component={SupportProRequestList} permissionPath="HelpRequest" />
+              <ProtectedRoute exact path="/satici-destek-talepleri" component={SupportSellerRequestList} permissionPath="HelpRequest" />
+              <ProtectedRoute exact path="/web-destek-konulari" component={SupportWebSubjectList} permissionPath="HelpRequest" />
+              <ProtectedRoute exact path="/profesyonel-destek-konulari" component={SupportProSubjectList} permissionPath="HelpRequest" />
+              <ProtectedRoute exact path="/satici-destek-konulari" component={SupportSellerSubjectList} permissionPath="HelpRequest" />
+              <ProtectedRoute exact path="/housiy-kampanyasi-ekle" component={HousiyCampaignCreate} permissionPath="SellerCampaigns" />
+              <ProtectedRoute exact path="/housiy-kampanya-listesi" component={HousiyCampaignList} permissionPath="SellerCampaigns" />
+              <ProtectedRoute exact path="/housiy-kampanyasi-detayi/:id?" component={HousiyCampaignDetail} permissionPath="SellerCampaigns" />
+              <ProtectedRoute exact path="/genel-anasayfa-icerikleri/:tabId?" component={GeneralMainContent} permissionPath="ProSellerLoginManagement" />
+              <ProtectedRoute exact path="/genel-slider-duzenle/:id?" component={GeneralSliderEdit} permissionPath="ProSellerLoginManagement" />
+              <ProtectedRoute exact path="/genel-tanitim-duzenle/:id?" component={GeneralPromotionEdit} permissionPath="ProSellerLoginManagement" />
+              <ProtectedRoute exact path="/genel-yorum-duzenle/:id?" component={GeneralCommentEdit} permissionPath="ProSellerLoginManagement" />
+              <ProtectedRoute exact path="/genel-hakkimizda-icerikleri" component={GeneralAboutContent} permissionPath="ProSellerLoginManagement" />
+              <ProtectedRoute exact path="/genel-hakkimizda-icerik-duzenle/:id?" component={GeneralAboutContentEdit} permissionPath="ProSellerLoginManagement" />
+              <ProtectedRoute exact path="/genel-profesyonel-icerikleri" component={GeneralProContent} permissionPath="ProSellerLoginManagement" />
+              <ProtectedRoute exact path="/genel-profesyonel-icerik-duzenle/:id?" component={GeneralProContentEdit} permissionPath="ProSellerLoginManagement" />
+              <ProtectedRoute exact path="/genel-satici-icerikleri" component={GeneralSellerContent} permissionPath="ProSellerLoginManagement" />
+              <ProtectedRoute exact path="/genel-satici-icerik-duzenle/:id?" component={GeneralSellerContentEdit} permissionPath="ProSellerLoginManagement" />
+              <ProtectedRoute exact path="/genel-uyelik-paketleri" component={GeneralMembershipContent} permissionPath="ProSellerLoginManagement" />
+              <ProtectedRoute exact path="/genel-uyelik-duzenle/:id" component={GeneralMembershipEdit} permissionPath="ProSellerLoginManagement" />
+              <ProtectedRoute exact path="/geciken-siparis-listesi" component={OrderLateList} permissionPath="OrderManagement" />
+              <ProtectedRoute exact path="/siparis-listesi" component={OrderList} permissionPath="OrderManagement" />
+              <ProtectedRoute exact path="/siparis-detay/:id?" component={OrderListDetail} permissionPath="OrderManagement" />
+              <ProtectedRoute exact path="/iptal-edilen-siparis-listesi" component={CanceledOrderList} permissionPath="OrderManagement" />
+              <ProtectedRoute exact path="/fikir-ve-proje-sorulari" component={IdeaProjectQuestionList} permissionPath="WaitingApproveProjectQuestionCount" />
+              <ProtectedRoute exact path="/yeni-liste-olustur" component={AddNewList} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/olusturulan-listeler" component={CreatedLists} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/liste-duzenle/:id?" component={UpdateList} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/liste-detay/:id?" component={ListDetail} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/banner-olustur" component={BannerUpsert} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/banner-duzenle/:id" component={BannerUpsert} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/liste-banner" component={BannerList} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/siparis-iade-talepleri" component={OrderRefundRequestList} permissionPath="OrderManagement" />
+              <ProtectedRoute exact path="/devam-eden-isler" component={ProWorkOngoingList} permissionPath="ProServices" />
+              <ProtectedRoute exact path="/teslim-edilen-isler" component={ProWorkCompletedList} permissionPath="ProServices" />
+              <ProtectedRoute exact path="/iptal-edilen-isler" component={ProWorkCanceledList} permissionPath="ProServices" />
+              <ProtectedRoute exact path="/is-iptal-talepleri" component={ProWorkCancelRequestList} permissionPath="ProServices" />
+              <ProtectedRoute exact path="/taksitli-odemeler" component={ProWorkInstallmentList} permissionPath="ProServices" />
+              <ProtectedRoute exact path="/is-odeme-detay/:id" component={ProWorkPaymentDetail} permissionPath="ProServices" />
+              <ProtectedRoute exact path="/tamamlanan-odemeler" component={ProWorkCompletedPaymentList} permissionPath="ProServices" />
+              <ProtectedRoute exact path="/hizmet-sorun-bildirimleri" component={ProWorkReportList} permissionPath="ProServices" />
+              <ProtectedRoute exact path="/hizmet-detay/:id" component={ProWorkDetailMain} permissionPath="ProServices" />
+              <ProtectedRoute exact path="/indirim-kuponlari" component={DiscountCouponList} permissionPath="DiscountCoupons" />
+              <ProtectedRoute exact path="/indirim-kuponu-duzenle/:id?" component={DiscountCouponEdit} permissionPath="DiscountCoupons" />
+              <ProtectedRoute exact path="/sozlesme-listesi" component={AgreementList} permissionPath="AgreementManagement" />
+              <ProtectedRoute exact path="/sozlesme-duzenle/:id" component={AgreementEdit} permissionPath="AgreementManagement" />
+              <ProtectedRoute exact path="/sss-listesi" component={FaqList} permissionPath="FAQManagement" />
+              <ProtectedRoute exact path="/sss-duzenle/:id?" component={FaqEdit} permissionPath="FAQManagement" />
+              <ProtectedRoute exact path="/sosyal-medya-listesi" component={SocialMediaList} permissionPath="SocialMediaManagement" />
+              <ProtectedRoute exact path="/musteri-kargo-fiyatlandirmasi" component={CargoPricesCustomer} permissionPath="CargoOperations" />
+              <ProtectedRoute exact path="/magaza-kargo-fiyatlandirmasi" component={CargoPricesStore} permissionPath="CargoOperations" />
+              <ProtectedRoute exact path="/sepet-listesi" component={ShoppingCartList} permissionPath="OrderManagement" />
+              <ProtectedRoute exact path="/sepet-detay/:id?" component={ShoppingCartDetail} permissionPath="OrderManagement" />
+              <ProtectedRoute exact path="/iptal-red-yonetimi" component={RejectReasonCountList} permissionPath="ProCancelRejectManagement" />
+              <ProtectedRoute exact path="/iptal-red-yonetimi/:type" component={RejectReasonList} permissionPath="ProCancelRejectManagement" />
+              <ProtectedRoute exact path="/toplu-urun-islemleri" component={MultiProductTransactions} permissionPath="ProductManagement" />
+              <ProtectedRoute exact path="/liste-sponsorluk-ucretleri" component={ListSponsorPrices} permissionPath="AdManagement" />
+              <ProtectedRoute exact path="/reklam-sponsorluk-ucretleri" component={AdSponsorPrices} permissionPath="AdManagement" />
+              <ProtectedRoute exact path="/sponsorlu-urunler" component={SponsoredProducts} permissionPath="SellerAd" />
+              <ProtectedRoute exact path="/sponsorlu-profesyoneller" component={SponsoredProfessionals} permissionPath="ProAd" />
+              <ProtectedRoute exact path="/magaza-komisyon-oranlari-listesi" component={SellerCommissionList} permissionPath="SellerAd" />
+              <ProtectedRoute exact path="/magaza-komisyon-orani-olustur" component={SellerCommissionUpsert} permissionPath="SellerAd" />
+              <ProtectedRoute exact path="/magaza-komisyon-orani-duzenle/:id" component={SellerCommissionUpsert} permissionPath="SellerAd" />
+              <ProtectedRoute exact path="/tamamlanan-tahsilatlar" component={CompletedSellerPaymentList} permissionPath="SellerCollections" />
+              <ProtectedRoute exact path="/satici-faturalandirilmasi-gereken-islemler" component={SellerWaitingInvoicePaymentActionList} permissionPath="SellerPayments" />
+              <ProtectedRoute exact path="/satici-yeni-fatura-olustur" component={CreateNewSellerInvoice} permissionPath="SellerPayments" />
+              <ProtectedRoute exact path="/satici-faturalandirilmis-islemler" component={SellerInvoicedPaymentActionList} permissionPath="SellerPayments" />
+              <ProtectedRoute exact path="/satici-ekstre-olustur" component={SellerReceiptList} permissionPath="SellerPayments" />
+              <ProtectedRoute exact path="/satici-ekstre-odeme-kayitlari/:id?" component={SellerReceiptPaymentRecordList} permissionPath="SellerPayments" />
+              <ProtectedRoute exact path="/satici-odeme-emirleri" component={SellerAllReceiptList} permissionPath="SellerPayments" />
+              <ProtectedRoute exact path="/satici-ekstre-detay/:id?" component={ReceiptDetailForSeller} permissionPath="SellerPayments" />
+              <ProtectedRoute exact path="/satici-tamamlanan-odemeler" component={SellerPaidReceiptList} permissionPath="SellerPayments" />
+              <ProtectedRoute exact path="/satici-tamamlanmayan-odemeler" component={SellerUnPaidReceiptList} permissionPath="SellerPayments" />
+              <ProtectedRoute exact path="/pro-bekleyen-tahsilatlar" component={ProWaitingPaymentsList} permissionPath="ProCollections" />
+              <ProtectedRoute exact path="/pro-geciken-tahsilatlar" component={ProDelayedPaymentsList} permissionPath="ProCollections" />
+              <ProtectedRoute exact path="/pro-tamamlanan-tahsilatlar" component={ProCompletedPaymentsList} permissionPath="ProCollections" />
+              <ProtectedRoute exact path="/pro-abonelik-odemeleri" component={ProSubscriptionPaymentsList} permissionPath="ProCollections" />
+              <ProtectedRoute exact path="/pro-faturalandirilmasi-gereken-islemler" component={ProWaitingInvoicePaymentActionList} permissionPath="ProPayments" />
+              <ProtectedRoute exact path="/pro-yeni-fatura-olustur" component={CreateNewProInvoice} permissionPath="ProPayments" />
+              <ProtectedRoute exact path="/pro-faturalandirilmis-islemler" component={ProInvoicedPaymentActionList} permissionPath="ProPayments" />
+              <ProtectedRoute exact path="/pro-ekstre-olustur" component={ProReceiptList} permissionPath="ProPayments" />
+              <ProtectedRoute exact path="/pro-ekstre-odeme-kayitlari/:id?" component={ProReceiptPaymentRecordList} permissionPath="ProPayments" />
+              <ProtectedRoute exact path="/pro-tamamlanan-odemeler" component={ProPaidReceiptList} permissionPath="ProPayments" />
+              <ProtectedRoute exact path="/pro-odeme-emirleri" component={ProAllReceiptList} permissionPath="ProPayments" />
+              <ProtectedRoute exact path="/pro-ekstre-detay/:id?" component={ReceiptDetailForPro} permissionPath="ProPayments" />
+              <ProtectedRoute exact path="/pro-reklam-odemeleri" component={ProAdvertisementPayments} permissionPath="AdPayments" />
+              <ProtectedRoute exact path="/satici-reklam-odemeleri" component={SellerAdvertisementPayments} permissionPath="AdPayments" />
+              <ProtectedRoute exact path="/uye-listesi" component={SiteUserList} permissionPath="UserMembershipList" />
+              <ProtectedRoute exact path="/uye-detay/:id" component={SiteUserDetailMain} permissionPath="UserMembershipList" />
+              <ProtectedRoute exact path="/genel-seo" component={SeoGeneral} permissionPath="SEOManagement" />
+              <ProtectedRoute exact path="/satici-seo" component={SeoSeller} permissionPath="SEOManagement" />
+              <ProtectedRoute exact path="/urun-seo" component={SeoProduct} permissionPath="SEOManagement" />
+              <ProtectedRoute exact path="/urun-kategori-seo" component={SeoProductCategory} permissionPath="SEOManagement" />
+              <ProtectedRoute exact path="/profesyonel-seo" component={SeoProfessional} permissionPath="SEOManagement" />
+              <ProtectedRoute exact path="/profesyonel-kategori-seo" component={SeoProfessionalCategory} permissionPath="SEOManagement" />
+              <ProtectedRoute exact path="/fikir-seo" component={SeoIdea} permissionPath="SEOManagement" />
+              <ProtectedRoute exact path="/fikir-kategori-seo" component={SeoIdeaCategory} permissionPath="SEOManagement" />
+              <ProtectedRoute exact path="/xml-yonetimi" component={XmlManagement} permissionPath="XMLManagement" />
+              <ProtectedRoute exact path="/duyuru-yonetimi" component={AnnouncementList} permissionPath="AnnouncementManagement" />
+              <ProtectedRoute exact path="/duyuru-duzenle/:id?" component={AnnouncementEdit} permissionPath="AnnouncementManagement" />
+              <ProtectedRoute exact path="/satici-iptal-iade-yonetimi" component={SellerRejecReasonList} permissionPath="SellerCancelRefundManagement" />
+              <ProtectedRoute exact path="/satici-iptal-iade-yonetimi-detay/:type" component={SellerRejectReasonOptionList} permissionPath="SellerCancelRefundManagement" />
+              <ProtectedRoute exact path="/satici-varyasyon-kategori-listesi/:id?" component={SellerCategoryListForVariations} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/satici-ozellik-kategori-listesi/:id?" component={SellerCategoryListForFeature} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/satici-alt-kategori-listesi/:id?" component={SellerSubCategoryList} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/satici-kategori-linkleme" component={LinkedCategoryList} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/satici-yeni-kategori-linkle" component={LinkedCategoryAdd} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/satici-kategori-agaci" component={SellerCategoryTree} permissionPath="SellerCategoryManagement" />
+              <ProtectedRoute exact path="/ceza-hizmet-kesintileri" component={SiteServicesInterruptions} permissionPath="SiteManagement" />
+              <ProtectedRoute exact path="/urun-gruplari-seo" component={SeoProductGroup} permissionPath="SEOManagement" />
+              <ProtectedRoute exact path="/grup-alim-katilimci-ayarlari" component={GroupParticipantSettingsList} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/grup-alim-katilimci-ayari/olustur" component={GroupParticipantSettingsUpsert} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/grup-alim-katilimci-ayari/duzenle/:id" component={GroupParticipantSettingsUpsert} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/grup-alim-sure-ayarlari" component={GroupLiveTimeSettingsList} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/grup-alim-sure-ayari/olustur" component={GroupLiveTimeSettingsUpsert} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/grup-alim-sure-ayari/duzenle/:id" component={GroupLiveTimeSettingsUpsert} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/grup-alimlar" component={GroupBuyList} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/grup-alim/olustur" component={GroupBuyUpsert} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/grup-alim/duzenle/:id" component={GroupBuyUpsert} permissionPath="HighlightManagement" />
+              <ProtectedRoute exact path="/grup-alim/detay/:id" component={GroupBuyDetail} permissionPath="HighlightManagement" />
+
+              <Route exact path="/yetki-yok" component={Districted} />
+            </>
+          </Switch >
+        </BrowserRouter >
+      </SharedContextProvider >
+    </SimpleReactLightbox>
+  </React.StrictMode >,
+  document.getElementById('root')
+);

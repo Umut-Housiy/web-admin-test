@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-admin-deployment
+  namespace: default
+  labels:
+    app: web-admin
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-admin
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: web-admin
+    spec:
+      containers:
+        - name: web-admin
+          image: "{ IMAGE }"
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-admin-service
+  namespace: default
+  # TODO : namespace: housiy-prod
+spec:
+  selector:
+    app: web-admin
+  ports:
+    - port: 80
+      protocol: TCP
